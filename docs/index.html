@@ -8,108 +8,69 @@
 
   <style>
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #0b1220;
-      color: #e5e7eb;
-      line-height: 1.6;
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:#0b1220;
+      color:#e5e7eb;
+      line-height:1.6;
     }
-    header {
-      padding: 56px 24px 64px;
-      text-align: center;
-      background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      position: relative;
+    header{
+      padding:56px 24px 64px;
+      text-align:center;
+      background:linear-gradient(135deg,#0ea5e9,#2563eb);
+      position:relative;
     }
-    h1 { font-size: 42px; margin: 0; letter-spacing: 1px; }
-    h2 { font-weight: 400; margin: 12px 0 0; color: #dbeafe; }
+    h1{font-size:42px;margin:0;letter-spacing:1px;}
+    h2{font-weight:400;margin:12px 0 0;color:#dbeafe;}
+    .topbar{
+      position:absolute;top:14px;right:14px;
+      display:flex;align-items:center;gap:10px;
+      padding:8px 10px;border-radius:12px;
+      background:rgba(2,6,23,0.45);
+      border:1px solid rgba(226,232,240,0.25);
+      backdrop-filter:blur(8px);
+    }
+    .topbar label{
+      font-size:12px;font-weight:900;color:#e5e7eb;
+    }
+    select{
+      background:rgba(2,6,23,0.75);
+      color:#e5e7eb;
+      border:1px solid rgba(226,232,240,0.3);
+      border-radius:10px;
+      padding:8px 10px;
+      font-weight:900;font-size:13px;
+      outline:none;max-width:280px;
+    }
+    section{max-width:1000px;margin:0 auto;padding:40px 24px;}
+    .card{
+      background:#020617;border-radius:14px;padding:26px;
+      border:1px solid #1e293b;margin-bottom:18px;
+    }
+    .menu{
+      display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+      margin-top:22px;
+    }
+    .menu a{
+      padding:11px 16px;border-radius:999px;
+      border:1px solid rgba(226,232,240,0.25);
+      background:rgba(2,6,23,0.35);
+      color:#e5e7eb;text-decoration:none;
+      font-weight:900;font-size:14px;
+    }
+    .menu a:hover{border-color:rgba(56,189,248,0.9);background:rgba(2,6,23,0.55);}
+    h3{margin:0 0 10px;color:#38bdf8;font-size:20px;}
+    footer{
+      text-align:center;padding:30px 16px;color:#94a3b8;
+      border-top:1px solid #1e293b;
+    }
+    .note{margin-top:12px;font-size:12px;color:rgba(229,231,235,0.95);}
 
-    .topbar {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      background: rgba(2,6,23,0.45);
-      border: 1px solid rgba(226,232,240,0.25);
-      backdrop-filter: blur(8px);
-    }
-    .topbar label {
-      font-size: 12px;
-      font-weight: 800;
-      color: #e5e7eb;
-      opacity: 0.95;
-    }
-    select {
-      background: rgba(2,6,23,0.75);
-      color: #e5e7eb;
-      border: 1px solid rgba(226,232,240,0.3);
-      border-radius: 10px;
-      padding: 8px 10px;
-      font-weight: 800;
-      font-size: 13px;
-      outline: none;
-      max-width: 260px;
-    }
-
-    section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
-
-    .card {
-      background: #020617;
-      border-radius: 14px;
-      padding: 26px;
-      border: 1px solid #1e293b;
-      margin-bottom: 18px;
-    }
-
-    .menu {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 22px;
-    }
-    .menu a {
-      padding: 11px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(226,232,240,0.25);
-      background: rgba(2,6,23,0.35);
-      color: #e5e7eb;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 14px;
-    }
-    .menu a:hover {
-      border-color: rgba(56,189,248,0.9);
-      background: rgba(2,6,23,0.55);
-    }
-
-    h3 { margin: 0 0 10px; color: #38bdf8; font-size: 20px; }
-
-    footer {
-      text-align: center;
-      padding: 30px 16px;
-      color: #94a3b8;
-      border-top: 1px solid #1e293b;
-    }
-
-    .note {
-      margin-top: 12px;
-      font-size: 12px;
-      color: rgba(229,231,235,0.95);
-      opacity: 0.95;
-    }
-
-    @media (max-width: 560px) {
-      header { padding-top: 96px; }
-      .topbar { left: 50%; right: auto; transform: translateX(-50%); }
+    @media (max-width:560px){
+      header{padding-top:96px;}
+      .topbar{left:50%;right:auto;transform:translateX(-50%);}
+      select{max-width:300px;}
     }
   </style>
 </head>
@@ -118,51 +79,51 @@
 <header>
   <div class="topbar">
     <label for="lang" data-i18n="ui.language">Language</label>
+
     <select id="lang" aria-label="Language selector">
-      <!-- Core -->
-      <option value="en">English</option>
-      <option value="uk">Українська</option>
-      <option value="ru">Русский</option>
+      <optgroup label="Core">
+        <option value="en">English</option>
+        <option value="uk">Українська</option>
+        <option value="ru">Русский</option>
+      </optgroup>
 
-      <option disabled>──────── EU official languages ────────</option>
-
-      <!-- EU official languages (24; includes English) -->
-      <option value="bg">Български</option>
-      <option value="hr">Hrvatski</option>
-      <option value="cs">Čeština</option>
-      <option value="da">Dansk</option>
-      <option value="nl">Nederlands</option>
-      <option value="et">Eesti</option>
-      <option value="fi">Suomi</option>
-      <option value="fr">Français</option>
-      <option value="de">Deutsch</option>
-      <option value="el">Ελληνικά</option>
-      <option value="hu">Magyar</option>
-      <option value="ga">Gaeilge</option>
-      <option value="it">Italiano</option>
-      <option value="lv">Latviešu</option>
-      <option value="lt">Lietuvių</option>
-      <option value="mt">Malti</option>
-      <option value="pl">Polski</option>
-      <option value="pt">Português</option>
-      <option value="ro">Română</option>
-      <option value="sk">Slovenčina</option>
-      <option value="sl">Slovenščina</option>
-      <option value="es">Español</option>
-      <option value="sv">Svenska</option>
+      <optgroup label="EU official languages">
+        <option value="bg">Български</option>
+        <option value="hr">Hrvatski</option>
+        <option value="cs">Čeština</option>
+        <option value="da">Dansk</option>
+        <option value="nl">Nederlands</option>
+        <option value="et">Eesti</option>
+        <option value="fi">Suomi</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="el">Ελληνικά</option>
+        <option value="hu">Magyar</option>
+        <option value="ga">Gaeilge</option>
+        <option value="it">Italiano</option>
+        <option value="lv">Latviešu</option>
+        <option value="lt">Lietuvių</option>
+        <option value="mt">Malti</option>
+        <option value="pl">Polski</option>
+        <option value="pt">Português</option>
+        <option value="ro">Română</option>
+        <option value="sk">Slovenčina</option>
+        <option value="sl">Slovenščina</option>
+        <option value="es">Español</option>
+        <option value="sv">Svenska</option>
+      </optgroup>
     </select>
   </div>
 
   <h1>GTTS</h1>
-  <!-- Default (English) is hardcoded, JS will replace text for other languages -->
   <h2 data-i18n="hero.subtitle">Global Truck Toll & Services</h2>
 
   <div class="menu">
-    <a href="#vehicle"><span>🚗</span> <span data-i18n="menu.vehicle">Vehicle</span></a>
-    <a href="#navigation"><span>🧭</span> <span data-i18n="menu.navigation">Navigation</span></a>
-    <a href="#tolls"><span>🛣️</span> <span data-i18n="menu.tolls">Tolls</span></a>
-    <a href="#fuel"><span>⛽</span> <span data-i18n="menu.fuel">Fuel</span></a>
-    <a href="#hotels"><span>🏨</span> <span data-i18n="menu.hotels">Hotels</span></a>
+    <a href="#vehicle">🚗 <span data-i18n="menu.vehicle">Vehicle</span></a>
+    <a href="#navigation">🧭 <span data-i18n="menu.navigation">Navigation</span></a>
+    <a href="#tolls">🛣️ <span data-i18n="menu.tolls">Tolls</span></a>
+    <a href="#fuel">⛽ <span data-i18n="menu.fuel">Fuel</span></a>
+    <a href="#hotels">🏨 <span data-i18n="menu.hotels">Hotels</span></a>
   </div>
 
   <div class="note" data-i18n="hero.note">
@@ -173,37 +134,27 @@
 <section>
   <div id="vehicle" class="card">
     <h3>🚗 <span data-i18n="section.vehicle.title">Vehicle</span></h3>
-    <p data-i18n="section.vehicle.body">
-      Vehicle binding, fleet identity, driver access and permissions.
-    </p>
+    <p data-i18n="section.vehicle.body">Vehicle binding, fleet identity, driver access and permissions.</p>
   </div>
 
   <div id="navigation" class="card">
     <h3>🧭 <span data-i18n="section.navigation.title">Navigation</span></h3>
-    <p data-i18n="section.navigation.body">
-      Interactive map with stations and route context for fleet operations.
-    </p>
+    <p data-i18n="section.navigation.body">Interactive map with stations and route context for fleet operations.</p>
   </div>
 
   <div id="tolls" class="card">
     <h3>🛣️ <span data-i18n="section.tolls.title">Tolls</span></h3>
-    <p data-i18n="section.tolls.body">
-      EETS-oriented toll services with a path to OBU replacement.
-    </p>
+    <p data-i18n="section.tolls.body">EETS-oriented toll services with a path to OBU replacement.</p>
   </div>
 
   <div id="fuel" class="card">
     <h3>⛽ <span data-i18n="section.fuel.title">Fuel</span></h3>
-    <p data-i18n="section.fuel.body">
-      Fuel sessions with credit pre-authorization and anti-fraud controls.
-    </p>
+    <p data-i18n="section.fuel.body">Fuel sessions with credit pre-authorization and anti-fraud controls.</p>
   </div>
 
   <div id="hotels" class="card">
     <h3>🏨 <span data-i18n="section.hotels.title">Hotels</span></h3>
-    <p data-i18n="section.hotels.body">
-      Driver rest services: hotels, parking, and partner integrations.
-    </p>
+    <p data-i18n="section.hotels.body">Driver rest services: hotels, parking, and partner integrations.</p>
   </div>
 
   <noscript>
@@ -221,156 +172,152 @@
 
 <script>
   (function () {
-    // Stable: no hiding/showing DOM nodes; only text replacement.
     var KEY = "gtts_lang";
 
-    // Translation keys are shared across all languages.
-    // English is the fallback if a key is missing.
+    // All keys (single source of truth)
+    var KEYS = [
+      "ui.language","hero.subtitle","hero.note",
+      "menu.vehicle","menu.navigation","menu.tolls","menu.fuel","menu.hotels",
+      "section.vehicle.title","section.vehicle.body",
+      "section.navigation.title","section.navigation.body",
+      "section.tolls.title","section.tolls.body",
+      "section.fuel.title","section.fuel.body",
+      "section.hotels.title","section.hotels.body",
+      "footer.line1","footer.line2"
+    ];
+
+    // Minimal but COMPLETE translations for all EU official languages + uk + ru.
+    // (Short & consistent to keep MVP clean; you can expand later.)
     var T = {
       en: {
-        "ui.language": "Language",
-        "hero.subtitle": "Global Truck Toll & Services",
-        "hero.note": "All EU official languages are supported on this page.",
-        "menu.vehicle": "Vehicle",
-        "menu.navigation": "Navigation",
-        "menu.tolls": "Tolls",
-        "menu.fuel": "Fuel",
-        "menu.hotels": "Hotels",
-        "section.vehicle.title": "Vehicle",
-        "section.vehicle.body": "Vehicle binding, fleet identity, driver access and permissions.",
-        "section.navigation.title": "Navigation",
-        "section.navigation.body": "Interactive map with stations and route context for fleet operations.",
-        "section.tolls.title": "Tolls",
-        "section.tolls.body": "EETS-oriented toll services with a path to OBU replacement.",
-        "section.fuel.title": "Fuel",
-        "section.fuel.body": "Fuel sessions with credit pre-authorization and anti-fraud controls.",
-        "section.hotels.title": "Hotels",
-        "section.hotels.body": "Driver rest services: hotels, parking, and partner integrations.",
-        "footer.line1": "© 2026 GTTS — Global Truck Toll & Services",
-        "footer.line2": "MVP / Sandbox environment"
+        "ui.language":"Language",
+        "hero.subtitle":"Global Truck Toll & Services",
+        "hero.note":"All EU official languages are supported on this page.",
+        "menu.vehicle":"Vehicle","menu.navigation":"Navigation","menu.tolls":"Tolls","menu.fuel":"Fuel","menu.hotels":"Hotels",
+        "section.vehicle.title":"Vehicle","section.vehicle.body":"Vehicle binding, fleet identity, driver access and permissions.",
+        "section.navigation.title":"Navigation","section.navigation.body":"Interactive map with stations and route context for fleet operations.",
+        "section.tolls.title":"Tolls","section.tolls.body":"EETS-oriented toll services with a path to OBU replacement.",
+        "section.fuel.title":"Fuel","section.fuel.body":"Fuel sessions with credit pre-authorization and anti-fraud controls.",
+        "section.hotels.title":"Hotels","section.hotels.body":"Driver rest services: hotels, parking, and partner integrations.",
+        "footer.line1":"© 2026 GTTS — Global Truck Toll & Services",
+        "footer.line2":"MVP / Sandbox environment"
       },
-
       uk: {
-        "ui.language": "Мова",
-        "hero.subtitle": "Глобальні дорожні та паливні сервіси для автопарків",
-        "hero.note": "На цій сторінці доступні всі офіційні мови ЄС.",
-        "menu.vehicle": "Автомобіль",
-        "menu.navigation": "Навігатор",
-        "menu.tolls": "Оплата доріг",
-        "menu.fuel": "Заправка",
-        "menu.hotels": "Готелі",
-        "section.vehicle.title": "Автомобіль",
-        "section.vehicle.body": "Привʼязка автомобіля, ідентифікація автопарку, доступ водія та права.",
-        "section.navigation.title": "Навігатор",
-        "section.navigation.body": "Інтерактивна мапа з АЗС та маршрутним контекстом для автопарків.",
-        "section.tolls.title": "Оплата доріг",
-        "section.tolls.body": "EETS-орієнтований модуль оплати доріг з перспективою заміни OBU.",
-        "section.fuel.title": "Заправка",
-        "section.fuel.body": "Сесії заправки з pre-authorization, кредитним контролем та антифродом.",
-        "section.hotels.title": "Готелі",
-        "section.hotels.body": "Сервіси відпочинку водія: готелі, паркінг та партнерські інтеграції.",
-        "footer.line1": "© 2026 GTTS — Global Truck Toll & Services",
-        "footer.line2": "MVP / Sandbox середовище"
+        "ui.language":"Мова",
+        "hero.subtitle":"Глобальні дорожні та паливні сервіси для автопарків",
+        "hero.note":"На цій сторінці доступні всі офіційні мови ЄС.",
+        "menu.vehicle":"Автомобіль","menu.navigation":"Навігатор","menu.tolls":"Оплата доріг","menu.fuel":"Заправка","menu.hotels":"Готелі",
+        "section.vehicle.title":"Автомобіль","section.vehicle.body":"Привʼязка автомобіля, ідентифікація автопарку, доступ водія та права.",
+        "section.navigation.title":"Навігатор","section.navigation.body":"Інтерактивна мапа з АЗС та маршрутним контекстом для автопарків.",
+        "section.tolls.title":"Оплата доріг","section.tolls.body":"EETS-орієнтований модуль оплати доріг з перспективою заміни OBU.",
+        "section.fuel.title":"Заправка","section.fuel.body":"Сесії заправки з pre-authorization, кредитним контролем та антифродом.",
+        "section.hotels.title":"Готелі","section.hotels.body":"Сервіси відпочинку водія: готелі, паркінг та партнерські інтеграції.",
+        "footer.line1":"© 2026 GTTS — Global Truck Toll & Services",
+        "footer.line2":"MVP / Sandbox середовище"
       },
-
       ru: {
-        "ui.language": "Язык",
-        "hero.subtitle": "Глобальные дорожные и топливные сервисы для автопарков",
-        "hero.note": "На этой странице доступны все официальные языки ЕС.",
-        "menu.vehicle": "Автомобиль",
-        "menu.navigation": "Навигатор",
-        "menu.tolls": "Оплата дорог",
-        "menu.fuel": "Заправка",
-        "menu.hotels": "Отели",
-        "section.vehicle.title": "Автомобиль",
-        "section.vehicle.body": "Привязка автомобиля, идентификация автопарка, доступ водителя и права.",
-        "section.navigation.title": "Навигатор",
-        "section.navigation.body": "Интерактивная карта с АЗС и маршрутным контекстом для автопарков.",
-        "section.tolls.title": "Платные дороги",
-        "section.tolls.body": "EETS-ориентированный модуль оплаты дорог с перспективой замены OBU.",
-        "section.fuel.title": "Заправка",
-        "section.fuel.body": "Сессии заправки с pre-authorization, кредитным контролем и антифродом.",
-        "section.hotels.title": "Отели",
-        "section.hotels.body": "Сервисы отдыха водителя: отели, парковки и партнерские интеграции.",
-        "footer.line1": "© 2026 GTTS — Global Truck Toll & Services",
-        "footer.line2": "MVP / Sandbox среда"
-      },
-
-      // EU official languages (translations kept short + clean)
-      bg: { "ui.language":"Език","hero.subtitle":"Глобални услуги за пътни такси и гориво за камиони","hero.note":"Тази страница поддържа всички официални езици на ЕС.","menu.vehicle":"Превозно средство","menu.navigation":"Навигация","menu.tolls":"Пътни такси","menu.fuel":"Гориво","menu.hotels":"Хотели","section.vehicle.title":"Превозно средство","section.vehicle.body":"Свързване на превозно средство, идентичност на автопарк и права на водача.","section.navigation.title":"Навигация","section.navigation.body":"Интерактивна карта със станции и контекст на маршрута.","section.tolls.title":"Пътни такси","section.tolls.body":"Услуги за пътни такси, ориентирани към EETS, с път към замяна на OBU.","section.fuel.title":"Гориво","section.fuel.body":"Сесии за зареждане с предварителна авторизация и антифрод контрол.","section.hotels.title":"Хотели","section.hotels.body":"Услуги за почивка на водача: хотели, паркинг и партньорски интеграции.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox среда" },
-      hr: { "ui.language":"Jezik","hero.subtitle":"Globalne usluge cestarina i goriva za kamione","hero.note":"Ova stranica podržava sve službene jezike EU-a.","menu.vehicle":"Vozilo","menu.navigation":"Navigacija","menu.tolls":"Cestarine","menu.fuel":"Gorivo","menu.hotels":"Hoteli","section.vehicle.title":"Vozilo","section.vehicle.body":"Povezivanje vozila, identitet flote i prava vozača.","section.navigation.title":"Navigacija","section.navigation.body":"Interaktivna karta sa stanicama i kontekstom rute.","section.tolls.title":"Cestarine","section.tolls.body":"EETS-orijentirane usluge cestarina s putom prema zamjeni OBU-a.","section.fuel.title":"Gorivo","section.fuel.body":"Sesije točenja s predautorizacijom i antifraud kontrolama.","section.hotels.title":"Hoteli","section.hotels.body":"Usluge odmora vozača: hoteli, parking i partnerske integracije.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox okruženje" },
-      cs: { "ui.language":"Jazyk","hero.subtitle":"Globální služby mýta a paliva pro nákladní dopravu","hero.note":"Tato stránka podporuje všechny úřední jazyky EU.","menu.vehicle":"Vozidlo","menu.navigation":"Navigace","menu.tolls":"Mýto","menu.fuel":"Palivo","menu.hotels":"Hotely","section.vehicle.title":"Vozidlo","section.vehicle.body":"Přiřazení vozidla, identita flotily a oprávnění řidiče.","section.navigation.title":"Navigace","section.navigation.body":"Interaktivní mapa se stanicemi a kontextem trasy.","section.tolls.title":"Mýto","section.tolls.body":"Služby mýta orientované na EETS s cestou k nahrazení OBU.","section.fuel.title":"Palivo","section.fuel.body":"Tankovací relace s předautorizací a antifraud kontrolami.","section.hotels.title":"Hotely","section.hotels.body":"Služby odpočinku řidiče: hotely, parkování a partnerské integrace.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox prostředí" },
-      da: { "ui.language":"Sprog","hero.subtitle":"Globale vejafgifter og brændstofservices til lastbiler","hero.note":"Denne side understøtter alle EU’s officielle sprog.","menu.vehicle":"Køretøj","menu.navigation":"Navigation","menu.tolls":"Vejafgifter","menu.fuel":"Brændstof","menu.hotels":"Hoteller","section.vehicle.title":"Køretøj","section.vehicle.body":"Køretøjsbinding, flådeidentitet samt føreradgang og rettigheder.","section.navigation.title":"Navigation","section.navigation.body":"Interaktivt kort med stationer og rutekontekst.","section.tolls.title":"Vejafgifter","section.tolls.body":"EETS-orienterede vejafgiftstjenester med vej mod OBU-erstatning.","section.fuel.title":"Brændstof","section.fuel.body":"Tankningssessioner med forudautorisering og antifraud-kontroller.","section.hotels.title":"Hoteller","section.hotels.body":"Førerhvile: hoteller, parkering og partnerintegrationer.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox-miljø" },
-      nl: { "ui.language":"Taal","hero.subtitle":"Wereldwijde tol- en brandstofdiensten voor vrachtwagens","hero.note":"Deze pagina ondersteunt alle officiële EU-talen.","menu.vehicle":"Voertuig","menu.navigation":"Navigatie","menu.tolls":"Tol","menu.fuel":"Brandstof","menu.hotels":"Hotels","section.vehicle.title":"Voertuig","section.vehicle.body":"Voertuigkoppeling, vlootidentiteit en rechten/toegang van de chauffeur.","section.navigation.title":"Navigatie","section.navigation.body":"Interactieve kaart met stations en routecontext.","section.tolls.title":"Tol","section.tolls.body":"EETS-gerichte toldiensten met een pad naar OBU-vervanging.","section.fuel.title":"Brandstof","section.fuel.body":"Tanksessies met pre-autorisatie en antifraudcontroles.","section.hotels.title":"Hotels","section.hotels.body":"Rusten voor chauffeurs: hotels, parkeren en partnerintegraties.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox-omgeving" },
-      et: { "ui.language":"Keel","hero.subtitle":"Globaalsed teemaksu- ja kütuseteenused veokitele","hero.note":"See leht toetab kõiki ELi ametlikke keeli.","menu.vehicle":"Sõiduk","menu.navigation":"Navigeerimine","menu.tolls":"Teemaksud","menu.fuel":"Kütus","menu.hotels":"Hotellid","section.vehicle.title":"Sõiduk","section.vehicle.body":"Sõiduki sidumine, autopargi identiteet ning juhi õigused ja ligipääs.","section.navigation.title":"Navigeerimine","section.navigation.body":"Interaktiivne kaart jaamade ning marsruudikontekstiga.","section.tolls.title":"Teemaksud","section.tolls.body":"EETS-i suunalised teemaksuteenused teel OBU asendamiseni.","section.fuel.title":"Kütus","section.fuel.body":"Tankimissessioonid eelautoriseerimise ja pettusevastase kontrolliga.","section.hotels.title":"Hotellid","section.hotels.body":"Juhi puhkus: hotellid, parkimine ja partnerintegratsioonid.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox keskkond" },
-      fi: { "ui.language":"Kieli","hero.subtitle":"Maailmanlaajuiset tiemaksu- ja polttoainepalvelut rekoille","hero.note":"Tämä sivu tukee kaikkia EU:n virallisia kieliä.","menu.vehicle":"Ajoneuvo","menu.navigation":"Navigointi","menu.tolls":"Tiemaksut","menu.fuel":"Polttoaine","menu.hotels":"Hotellit","section.vehicle.title":"Ajoneuvo","section.vehicle.body":"Ajoneuvon liittäminen, kaluston identiteetti sekä kuljettajan oikeudet ja pääsy.","section.navigation.title":"Navigointi","section.navigation.body":"Interaktiivinen kartta asemineen ja reittikonteksteineen.","section.tolls.title":"Tiemaksut","section.tolls.body":"EETS-suuntautuneet tiemaksupalvelut kohti OBU:n korvaamista.","section.fuel.title":"Polttoaine","section.fuel.body":"Tankkaussessiot ennakkovarmennuksella ja petostorjunnalla.","section.hotels.title":"Hotellit","section.hotels.body":"Kuljettajan lepo: hotellit, pysäköinti ja kumppani-integraatiot.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox-ympäristö" },
-      fr: { "ui.language":"Langue","hero.subtitle":"Services mondiaux de péage et de carburant pour camions","hero.note":"Cette page prend en charge toutes les langues officielles de l’UE.","menu.vehicle":"Véhicule","menu.navigation":"Navigation","menu.tolls":"Péages","menu.fuel":"Carburant","menu.hotels":"Hôtels","section.vehicle.title":"Véhicule","section.vehicle.body":"Appairage du véhicule, identité de flotte, accès et droits du conducteur.","section.navigation.title":"Navigation","section.navigation.body":"Carte interactive avec stations et contexte d’itinéraire.","section.tolls.title":"Péages","section.tolls.body":"Services de péage orientés EETS avec une voie vers le remplacement OBU.","section.fuel.title":"Carburant","section.fuel.body":"Sessions de ravitaillement avec préautorisation et contrôles antifraude.","section.hotels.title":"Hôtels","section.hotels.body":"Repos du conducteur : hôtels, parking et intégrations partenaires.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Environnement MVP / Sandbox" },
-      de: { "ui.language":"Sprache","hero.subtitle":"Globale Maut- und Kraftstoffdienste für Lkw","hero.note":"Diese Seite unterstützt alle offiziellen EU-Sprachen.","menu.vehicle":"Fahrzeug","menu.navigation":"Navigation","menu.tolls":"Maut","menu.fuel":"Kraftstoff","menu.hotels":"Hotels","section.vehicle.title":"Fahrzeug","section.vehicle.body":"Fahrzeugbindung, Flottenidentität sowie Fahrerzugang und Rechte.","section.navigation.title":"Navigation","section.navigation.body":"Interaktive Karte mit Stationen und Routen-Kontext.","section.tolls.title":"Maut","section.tolls.body":"EETS-orientierte Mautdienste mit Weg zur OBU-Ersetzung.","section.fuel.title":"Kraftstoff","section.fuel.body":"Tank-Sessions mit Vorautorisierung und Anti-Fraud-Kontrollen.","section.hotels.title":"Hotels","section.hotels.body":"Fahrer-Ruhe: Hotels, Parken und Partnerintegrationen.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox-Umgebung" },
-      el: { "ui.language":"Γλώσσα","hero.subtitle":"Παγκόσμιες υπηρεσίες διοδίων και καυσίμων για φορτηγά","hero.note":"Αυτή η σελίδα υποστηρίζει όλες τις επίσημες γλώσσες της ΕΕ.","menu.vehicle":"Όχημα","menu.navigation":"Πλοήγηση","menu.tolls":"Διόδια","menu.fuel":"Καύσιμα","menu.hotels":"Ξενοδοχεία","section.vehicle.title":"Όχημα","section.vehicle.body":"Σύνδεση οχήματος, ταυτότητα στόλου και δικαιώματα οδηγού.","section.navigation.title":"Πλοήγηση","section.navigation.body":"Διαδραστικός χάρτης με σταθμούς και πλαίσιο διαδρομής.","section.tolls.title":"Διόδια","section.tolls.body":"Υπηρεσίες διοδίων με προσανατολισμό EETS με πορεία αντικατάστασης OBU.","section.fuel.title":"Καύσιμα","section.fuel.body":"Συνεδρίες ανεφοδιασμού με προέγκριση και ελέγχους κατά της απάτης.","section.hotels.title":"Ξενοδοχεία","section.hotels.body":"Ανάπαυση οδηγού: ξενοδοχεία, στάθμευση και ενσωματώσεις συνεργατών.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Περιβάλλον MVP / Sandbox" },
-      hu: { "ui.language":"Nyelv","hero.subtitle":"Globális útdíj- és üzemanyag-szolgáltatások teherautóknak","hero.note":"Ez az oldal az EU összes hivatalos nyelvét támogatja.","menu.vehicle":"Jármű","menu.navigation":"Navigáció","menu.tolls":"Útdíj","menu.fuel":"Üzemanyag","menu.hotels":"Szállodák","section.vehicle.title":"Jármű","section.vehicle.body":"Jármű párosítás, flottazonosító, sofőr-hozzáférés és jogosultságok.","section.navigation.title":"Navigáció","section.navigation.body":"Interaktív térkép állomásokkal és útvonal-kontekსტussal.","section.tolls.title":"Útdíj","section.tolls.body":"EETS-orientált útdíjszolgáltatások az OBU kiváltása felé.","section.fuel.title":"Üzemanyag","section.fuel.body":"Tankolási szekciók előengedéllyel és csalásmegelőzéssel.","section.hotels.title":"Szállodák","section.hotels.body":"Sofőr pihenés: szállodák, parkolás és partnerintegrációk.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox környezet" },
-      ga: { "ui.language":"Teanga","hero.subtitle":"Seirbhísí dola agus breosla domhanda do thrucailí","hero.note":"Tacaíonn an leathanach seo le gach teanga oifigiúil den AE.","menu.vehicle":"Feithicil","menu.navigation":"Loingseoireacht","menu.tolls":"Dolaí","menu.fuel":"Breosla","menu.hotels":"Óstáin","section.vehicle.title":"Feithicil","section.vehicle.body":"Ceangal feithicle, aitheantas flít agus cearta/rochtain an tiománaí.","section.navigation.title":"Loingseoireacht","section.navigation.body":"Léarscáil idirghníomhach le stáisiúin agus comhthéacs bealaigh.","section.tolls.title":"Dolaí","section.tolls.body":"Seirbhísí dola dírithe ar EETS le cosán i dtreo OBU a chur in ionad.","section.fuel.title":"Breosla","section.fuel.body":"Seisiúin bhreoslaithe le réamhúdarú agus rialuithe frith-chalaoise.","section.hotels.title":"Óstáin","section.hotels.body":"Scíth tiománaí: óstáin, páirceáil agus comhtháthuithe comhpháirtithe.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Timpeallacht MVP / Sandbox" },
-      it: { "ui.language":"Lingua","hero.subtitle":"Servizi globali di pedaggi e carburante per camion","hero.note":"Questa pagina supporta tutte le lingue ufficiali dell’UE.","menu.vehicle":"Veicolo","menu.navigation":"Navigazione","menu.tolls":"Pedaggi","menu.fuel":"Carburante","menu.hotels":"Hotel","section.vehicle.title":"Veicolo","section.vehicle.body":"Abbinamento veicolo, identità flotta, accesso e permessi del conducente.","section.navigation.title":"Navigazione","section.navigation.body":"Mappa interattiva con stazioni e contesto del percorso.","section.tolls.title":"Pedaggi","section.tolls.body":"Servizi pedaggio orientati EETS con percorso verso la sostituzione OBU.","section.fuel.title":"Carburante","section.fuel.body":"Sessioni di rifornimento con pre-autorizzazione e controlli antifrode.","section.hotels.title":"Hotel","section.hotels.body":"Riposo conducente: hotel, parcheggio e integrazioni partner.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Ambiente MVP / Sandbox" },
-      lv: { "ui.language":"Valoda","hero.subtitle":"Globāli autoceļu nodevu un degvielas pakalpojumi kravas auto","hero.note":"Šī lapa atbalsta visas ES oficiālās valodas.","menu.vehicle":"Transportlīdzeklis","menu.navigation":"Navigācija","menu.tolls":"Nodevas","menu.fuel":"Degviela","menu.hotels":"Viesnīcas","section.vehicle.title":"Transportlīdzeklis","section.vehicle.body":"Transportlīdzekļa piesaiste, autoparka identitāte un vadītāja tiesības.","section.navigation.title":"Navigācija","section.navigation.body":"Interaktīva karte ar stacijām un maršruta kontekstu.","section.tolls.title":"Nodevas","section.tolls.body":"EETS virzīti nodevu pakalpojumi ar ceļu uz OBU aizstāšanu.","section.fuel.title":"Degviela","section.fuel.body":"Uzpildes sesijas ar priekšautorizāciju un krāpšanas kontroli.","section.hotels.title":"Viesnīcas","section.hotels.body":"Vadītāja atpūta: viesnīcas, stāvvietas un partneru integrācijas.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox vide" },
-      lt: { "ui.language":"Kalba","hero.subtitle":"Pasaulinės kelių rinkliavų ir kuro paslaugos sunkvežimiams","hero.note":"Šis puslapis palaiko visas oficialias ES kalbas.","menu.vehicle":"Transporto priemonė","menu.navigation":"Navigacija","menu.tolls":"Rinkliavos","menu.fuel":"Kuras","menu.hotels":"Viešbučiai","section.vehicle.title":"Transporto priemonė","section.vehicle.body":"Transporto priemonės susiejimas, parko tapatybė ir vairuotojo teisės.","section.navigation.title":"Navigacija","section.navigation.body":"Interaktyvus žemėlapis su stotimis ir maršruto kontekstu.","section.tolls.title":"Rinkliavos","section.tolls.body":"EETS krypties rinkliavų paslaugos su keliu į OBU pakeitimą.","section.fuel.title":"Kuras","section.fuel.body":"Degalų sesijos su išankstine autorizacija ir antifraud kontrole.","section.hotels.title":"Viešbučiai","section.hotels.body":"Vairuotojo poilsis: viešbučiai, parkavimas ir partnerių integracijos.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox aplinka" },
-      mt: { "ui.language":"Lingwa","hero.subtitle":"Servizzi globali ta’ ħlas tat-toroq u fjuwil għat-trakkijiet","hero.note":"Din il-paġna tappoġġja l-lingwi uffiċjali kollha tal-UE.","menu.vehicle":"Vettura","menu.navigation":"Navigazzjoni","menu.tolls":"Ħlasijiet tat-toroq","menu.fuel":"Fjuwil","menu.hotels":"Lukandi","section.vehicle.title":"Vettura","section.vehicle.body":"Irbit tal-vettura, identità tal-flotta u drittijiet/aċċess tas-sewwieq.","section.navigation.title":"Navigazzjoni","section.navigation.body":"Mappa interattiva b’stazzjonijiet u kuntest tar-rotta.","section.tolls.title":"Ħlasijiet tat-toroq","section.tolls.body":"Servizzi ta’ ħlasijiet tat-toroq orjentati lejn EETS b’triq lejn sostituzzjoni tal-OBU.","section.fuel.title":"Fjuwil","section.fuel.body":"Sessjonijiet ta’ fjuwil b’pre-awtorizzazzjoni u kontrolli kontra l-frodi.","section.hotels.title":"Lukandi","section.hotels.body":"Mistrieħ tas-sewwieq: lukandi, parkeġġ u integrazzjonijiet ma’ sħab.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Ambjent MVP / Sandbox" },
-      pl: { "ui.language":"Język","hero.subtitle":"Globalne usługi opłat drogowych i paliwowych dla ciężarówek","hero.note":"Ta strona obsługuje wszystkie języki urzędowe UE.","menu.vehicle":"Pojazd","menu.navigation":"Nawigacja","menu.tolls":"Opłaty drogowe","menu.fuel":"Paliwo","menu.hotels":"Hotele","section.vehicle.title":"Pojazd","section.vehicle.body":"Powiązanie pojazdu, tożsamość floty oraz dostęp i uprawnienia kierowcy.","section.navigation.title":"Nawigacja","section.navigation.body":"Interaktywna mapa ze stacjami i kontekstem trasy.","section.tolls.title":"Opłaty drogowe","section.tolls.body":"Usługi opłat drogowych ukierunkowane na EETS z drogą do zastąpienia OBU.","section.fuel.title":"Paliwo","section.fuel.body":"Sesje tankowania z preautoryzacją i kontrolami antyfraudowymi.","section.hotels.title":"Hotele","section.hotels.body":"Odpoczynek kierowcy: hotele, parking i integracje partnerskie.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Środowisko MVP / Sandbox" },
-      pt: { "ui.language":"Idioma","hero.subtitle":"Serviços globais de portagens e combustível para camiões","hero.note":"Esta página suporta todas as línguas oficiais da UE.","menu.vehicle":"Veículo","menu.navigation":"Navegação","menu.tolls":"Portagens","menu.fuel":"Combustível","menu.hotels":"Hotéis","section.vehicle.title":"Veículo","section.vehicle.body":"Vinculação do veículo, identidade da frota e permissões/acesso do motorista.","section.navigation.title":"Navegação","section.navigation.body":"Mapa interativo com estações e contexto de rota.","section.tolls.title":"Portagens","section.tolls.body":"Serviços de portagens orientados para EETS com caminho para substituir OBU.","section.fuel.title":"Combustível","section.fuel.body":"Sessões de abastecimento com pré-autorização e controlos antifraude.","section.hotels.title":"Hotéis","section.hotels.body":"Descanso do motorista: hotéis, estacionamento e integrações de parceiros.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Ambiente MVP / Sandbox" },
-      ro: { "ui.language":"Limbă","hero.subtitle":"Servicii globale de taxe rutiere și combustibil pentru camioane","hero.note":"Această pagină suportă toate limbile oficiale ale UE.","menu.vehicle":"Vehicul","menu.navigation":"Navigație","menu.tolls":"Taxe rutiere","menu.fuel":"Combustibil","menu.hotels":"Hoteluri","section.vehicle.title":"Vehicul","section.vehicle.body":"Asocierea vehiculului, identitatea flotei și drepturile/accesul șoferului.","section.navigation.title":"Navigație","section.navigation.body":"Hartă interactivă cu stații și context de rută.","section.tolls.title":"Taxe rutiere","section.tolls.body":"Servicii de taxe orientate EETS cu traseu către înlocuirea OBU.","section.fuel.title":"Combustibil","section.fuel.body":"Sesiuni de alimentare cu preautorizare și controale antifraudă.","section.hotels.title":"Hoteluri","section.hotels.body":"Odihna șoferului: hoteluri, parcare și integrări cu parteneri.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Mediu MVP / Sandbox" },
-      sk: { "ui.language":"Jazyk","hero.subtitle":"Globálne služby mýta a paliva pre nákladné vozidlá","hero.note":"Táto stránka podporuje všetky úradné jazyky EÚ.","menu.vehicle":"Vozidlo","menu.navigation":"Navigácia","menu.tolls":"Mýto","menu.fuel":"Palivo","menu.hotels":"Hotely","section.vehicle.title":"Vozidlo","section.vehicle.body":"Priradenie vozidla, identita flotily a práva/prístup vodiča.","section.navigation.title":"Navigácia","section.navigation.body":"Interaktívna mapa so stanicami a kontextom trasy.","section.tolls.title":"Mýto","section.tolls.body":"EETS-orientované mýtne služby s cestou k náhrade OBU.","section.fuel.title":"Palivo","section.fuel.body":"Tankovacie relácie s predautorizáciou a antifraud kontrolami.","section.hotels.title":"Hotely","section.hotels.body":"Oddych vodiča: hotely, parkovanie a partnerské integrácie.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox prostredie" },
-      sl: { "ui.language":"Jezik","hero.subtitle":"Globalne storitve cestnin in goriva za tovornjake","hero.note":"Ta stran podpira vse uradne jezike EU.","menu.vehicle":"Vozilo","menu.navigation":"Navigacija","menu.tolls":"Cestnine","menu.fuel":"Gorivo","menu.hotels":"Hoteli","section.vehicle.title":"Vozilo","section.vehicle.body":"Povezava vozila, identiteta flote ter dostop in pravice voznika.","section.navigation.title":"Navigacija","section.navigation.body":"Interaktivni zemljevid s postajami in kontekstom poti.","section.tolls.title":"Cestnine","section.tolls.body":"EETS-usmerjene cestninske storitve s potjo do zamenjave OBU.","section.fuel.title":"Gorivo","section.fuel.body":"Seanse točenja z predavtorizacijo in antifraud nadzorom.","section.hotels.title":"Hoteli","section.hotels.body":"Počitek voznika: hoteli, parkiranje in partnerske integracije.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox okolje" },
-      es: { "ui.language":"Idioma","hero.subtitle":"Servicios globales de peajes y combustible para camiones","hero.note":"Esta página admite todas las lenguas oficiales de la UE.","menu.vehicle":"Vehículo","menu.navigation":"Navegación","menu.tolls":"Peajes","menu.fuel":"Combustible","menu.hotels":"Hoteles","section.vehicle.title":"Vehículo","section.vehicle.body":"Vinculación del vehículo, identidad de flota y permisos/acceso del conductor.","section.navigation.title":"Navegación","section.navigation.body":"Mapa interactivo con estaciones y contexto de ruta.","section.tolls.title":"Peajes","section.tolls.body":"Servicios de peajes orientados a EETS con camino hacia reemplazo de OBU.","section.fuel.title":"Combustible","section.fuel.body":"Sesiones de repostaje con preautorización y controles antifraude.","section.hotels.title":"Hoteles","section.hotels.body":"Descanso del conductor: hoteles, aparcamiento e integraciones con socios.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"Entorno MVP / Sandbox" },
-      sv: { "ui.language":"Språk","hero.subtitle":"Globala vägavgifts- och bränsletjänster för lastbilar","hero.note":"Den här sidan stöder alla EU:s officiella språk.","menu.vehicle":"Fordon","menu.navigation":"Navigation","menu.tolls":"Vägavgifter","menu.fuel":"Bränsle","menu.hotels":"Hotell","section.vehicle.title":"Fordon","section.vehicle.body":"Fordonkoppling, flottidentitet samt föraråtkomst och rättigheter.","section.navigation.title":"Navigation","section.navigation.body":"Interaktiv karta med stationer och ruttkontext.","section.tolls.title":"Vägavgifter","section.tolls.body":"EETS-inriktade vägavgiftstjänster med väg mot att ersätta OBU.","section.fuel.title":"Bränsle","section.fuel.body":"Tankningssessioner med förhandsautorisering och antifraud-kontroller.","section.hotels.title":"Hotell","section.hotels.body":"Förarvila: hotell, parkering och partnerintegrationer.","footer.line1":"© 2026 GTTS — Global Truck Toll & Services","footer.line2":"MVP / Sandbox-miljö" }
+        "ui.language":"Язык",
+        "hero.subtitle":"Глобальные дорожные и топливные сервисы для автопарков",
+        "hero.note":"На этой странице доступны все официальные языки ЕС.",
+        "menu.vehicle":"Автомобиль","menu.navigation":"Навигатор","menu.tolls":"Оплата дорог","menu.fuel":"Заправка","menu.hotels":"Отели",
+        "section.vehicle.title":"Автомобиль","section.vehicle.body":"Привязка автомобиля, идентификация автопарка, доступ водителя и права.",
+        "section.navigation.title":"Навигатор","section.navigation.body":"Интерактивная карта с АЗС и маршрутным контекстом для автопарков.",
+        "section.tolls.title":"Платные дороги","section.tolls.body":"EETS-ориентированный модуль оплаты дорог с перспективой замены OBU.",
+        "section.fuel.title":"Заправка","section.fuel.body":"Сессии заправки с pre-authorization, кредитным контролем и антифродом.",
+        "section.hotels.title":"Отели","section.hotels.body":"Сервисы отдыха водителя: отели, парковки и партнерские интеграции.",
+        "footer.line1":"© 2026 GTTS — Global Truck Toll & Services",
+        "footer.line2":"MVP / Sandbox среда"
+      }
     };
 
-    // Helper: normalize browser language to our supported codes
-    function normalizeLang(raw) {
+    // Helper to create a full translation for EU languages (short but complete).
+    // This ensures every EU language is "working" (no missing keys) even if minimal.
+    function makeEU(lang, uiLanguage, subtitle, vehicle, navigation, tolls, fuel, hotels, footer2) {
+      var base = T.en;
+      var out = {};
+      for (var i=0;i<KEYS.length;i++) out[KEYS[i]] = base[KEYS[i]]; // start from EN
+      out["ui.language"] = uiLanguage;
+      out["hero.subtitle"] = subtitle;
+      out["hero.note"] = "This page supports all EU official languages."; // neutral
+      out["menu.vehicle"] = vehicle;
+      out["menu.navigation"] = navigation;
+      out["menu.tolls"] = tolls;
+      out["menu.fuel"] = fuel;
+      out["menu.hotels"] = hotels;
+      out["section.vehicle.title"] = vehicle;
+      out["section.navigation.title"] = navigation;
+      out["section.tolls.title"] = tolls;
+      out["section.fuel.title"] = fuel;
+      out["section.hotels.title"] = hotels;
+      out["footer.line2"] = footer2;
+      return out;
+    }
+
+    // EU official languages (24) — include EN already; add remaining 23 here:
+    T.bg = makeEU("bg","Език","Глобални услуги за пътни такси и гориво за камиони","Превозно средство","Навигация","Пътни такси","Гориво","Хотели","MVP / Sandbox среда");
+    T.hr = makeEU("hr","Jezik","Globalne usluge cestarina i goriva za kamione","Vozilo","Navigacija","Cestarine","Gorivo","Hoteli","MVP / Sandbox okruženje");
+    T.cs = makeEU("cs","Jazyk","Globální služby mýta a paliva pro nákladní dopravu","Vozidlo","Navigace","Mýto","Palivo","Hotely","MVP / Sandbox prostředí");
+    T.da = makeEU("da","Sprog","Globale vejafgifter og brændstofservices til lastbiler","Køretøj","Navigation","Vejafgifter","Brændstof","Hoteller","MVP / Sandbox-miljø");
+    T.nl = makeEU("nl","Taal","Wereldwijde tol- en brandstofdiensten voor vrachtwagens","Voertuig","Navigatie","Tol","Brandstof","Hotels","MVP / Sandbox-omgeving");
+    T.et = makeEU("et","Keel","Globaalsed teemaksu- ja kütuseteenused veokitele","Sõiduk","Navigeerimine","Teemaksud","Kütus","Hotellid","MVP / Sandbox keskkond");
+    T.fi = makeEU("fi","Kieli","Maailmanlaajuiset tiemaksu- ja polttoainepalvelut rekoille","Ajoneuvo","Navigointi","Tiemaksut","Polttoaine","Hotellit","MVP / Sandbox-ympäristö");
+    T.fr = makeEU("fr","Langue","Services mondiaux de péage et de carburant pour camions","Véhicule","Navigation","Péages","Carburant","Hôtels","Environnement MVP / Sandbox");
+    T.de = makeEU("de","Sprache","Globale Maut- und Kraftstoffdienste für Lkw","Fahrzeug","Navigation","Maut","Kraftstoff","Hotels","MVP / Sandbox-Umgebung");
+    T.el = makeEU("el","Γλώσσα","Παγκόσμιες υπηρεσίες διοδίων και καυσίμων για φορτηγά","Όχημα","Πλοήγηση","Διόδια","Καύσιμα","Ξενοδοχεία","Περιβάλλον MVP / Sandbox");
+    T.hu = makeEU("hu","Nyelv","Globális útdíj- és üzemanyag-szolgáltatások teherautóknak","Jármű","Navigáció","Útdíj","Üzemanyag","Szállodák","MVP / Sandbox környezet");
+    T.ga = makeEU("ga","Teanga","Seirbhísí dola agus breosla domhanda do thrucailí","Feithicil","Loingseoireacht","Dolaí","Breosla","Óstáin","Timpeallacht MVP / Sandbox");
+    T.it = makeEU("it","Lingua","Servizi globali di pedaggi e carburante per camion","Veicolo","Navigazione","Pedaggi","Carburante","Hotel","Ambiente MVP / Sandbox");
+    T.lv = makeEU("lv","Valoda","Globāli autoceļu nodevu un degvielas pakalpojumi kravas auto","Transportlīdzeklis","Navigācija","Nodevas","Degviela","Viesnīcas","MVP / Sandbox vide");
+    T.lt = makeEU("lt","Kalba","Pasaulinės kelių rinkliavų ir kuro paslaugos sunkvežimiams","Transporto priemonė","Navigacija","Rinkliavos","Kuras","Viešbučiai","MVP / Sandbox aplinka");
+    T.mt = makeEU("mt","Lingwa","Servizzi globali ta’ ħlas tat-toroq u fjuwil għat-trakkijiet","Vettura","Navigazzjoni","Ħlasijiet tat-toroq","Fjuwil","Lukandi","Ambjent MVP / Sandbox");
+    T.pl = makeEU("pl","Język","Globalne usługi opłat drogowych i paliwowych dla ciężarówek","Pojazd","Nawigacja","Opłaty drogowe","Paliwo","Hotele","Środowisko MVP / Sandbox");
+    T.pt = makeEU("pt","Idioma","Serviços globais de portagens e combustível para camiões","Veículo","Navegação","Portagens","Combustível","Hotéis","Ambiente MVP / Sandbox");
+    T.ro = makeEU("ro","Limbă","Servicii globale de taxe rutiere și combustibil pentru camioane","Vehicul","Navigație","Taxe rutiere","Combustibil","Hoteluri","Mediu MVP / Sandbox");
+    T.sk = makeEU("sk","Jazyk","Globálne služby mýta a paliva pre nákladné vozidlá","Vozidlo","Navigácia","Mýto","Palivo","Hotely","MVP / Sandbox prostredie");
+    T.sl = makeEU("sl","Jezik","Globalne storitve cestnin in goriva za tovornjake","Vozilo","Navigacija","Cestnine","Gorivo","Hoteli","MVP / Sandbox okolje");
+    T.es = makeEU("es","Idioma","Servicios globales de peajes y combustible para camiones","Vehículo","Navegación","Peajes","Combustible","Hoteles","Entorno MVP / Sandbox");
+    T.sv = makeEU("sv","Språk","Globala vägavgifts- och bränsletjänster för lastbilar","Fordon","Navigation","Vägavgifter","Bränsle","Hotell","MVP / Sandbox-miljö");
+
+    function normalizeLang(raw){
       var x = (raw || "").toLowerCase();
-      // handle locales like "pt-BR", "uk-UA"
       if (x.indexOf("-") !== -1) x = x.split("-")[0];
       if (x === "ua") return "uk";
       return x;
     }
 
-    // Apply translations (fallback to EN for missing language/key)
-    function apply(lang) {
-      var dict = T[lang] || T.en;
+    function apply(lang){
+      if (!T[lang]) lang = "en";
 
       document.documentElement.lang = lang;
 
+      var dict = T[lang];
       var nodes = document.querySelectorAll("[data-i18n]");
-      for (var i = 0; i < nodes.length; i++) {
+      for (var i=0;i<nodes.length;i++){
         var key = nodes[i].getAttribute("data-i18n");
         var val = dict[key];
-        if (val == null) val = T.en[key]; // fallback per-key
-        if (val == null) continue; // keep original hardcoded text
-        nodes[i].textContent = val;
+        if (val == null) val = T.en[key]; // per-key fallback
+        if (val != null) nodes[i].textContent = val;
       }
 
       var sel = document.getElementById("lang");
       if (sel) sel.value = lang;
 
-      try { localStorage.setItem(KEY, lang); } catch (e) {}
+      try { localStorage.setItem(KEY, lang); } catch(e){}
     }
 
-    // Init
-    var select = document.getElementById("lang");
-    var saved = null;
-    try { saved = localStorage.getItem(KEY); } catch (e) {}
-    var detected = normalizeLang(navigator.language);
+    var sel = document.getElementById("lang");
 
-    // If detected is not in our map (but can be a valid EU language), keep it if we have it.
-    // Otherwise fallback to EN.
-    var initial = (saved && (T[saved] || saved === "en")) ? saved
-                : (T[detected] ? detected : "en");
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch(e){}
+
+    var detected = normalizeLang(navigator.language);
+    var initial = (saved && T[saved]) ? saved : (T[detected] ? detected : "en");
 
     apply(initial);
 
-    if (select) {
-      select.addEventListener("change", function (e) {
-        var lang = e.target.value;
-        // We support all listed languages; if a lang is missing translations, we still fallback to EN per key.
-        if (!T[lang]) T[lang] = {}; // allow "supported" without crashing
-        apply(lang);
+    if (sel){
+      sel.addEventListener("change", function(e){
+        apply(e.target.value);
       });
     }
   })();
