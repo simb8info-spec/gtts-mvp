@@ -21,7 +21,7 @@ class AppShell extends ConsumerWidget {
     ];
 
     return Scaffold(
-      // ✅ AppBar тут
+      // ✅ Top bar for Drawer button
       appBar: AppBar(
         title: const Text('GTTS'),
         leading: Builder(
@@ -32,9 +32,13 @@ class AppShell extends ConsumerWidget {
         ),
       ),
 
-      drawer: const AppDrawer(), // ✅ бокове меню
+      // ✅ Drawer
+      drawer: const AppDrawer(),
+
+      // ✅ Page content
       body: pages[currentIndex],
 
+      // ✅ Bottom tabs
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => ref.read(tabIndexProvider.notifier).state = i,
