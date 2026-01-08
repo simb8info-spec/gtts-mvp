@@ -1,79 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
   <title>GTTS — Global Truck Toll & Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="GTTS — mobile-first platform for truck fueling and toll services. Future EETS-compatible solution." />
+  <meta name="description" content="GTTS — платформа для заправок, оплати доріг та сервісів для вантажних автопарків." />
 
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       background: #0b1220;
       color: #e5e7eb;
       line-height: 1.6;
     }
 
     header {
-      padding: 64px 24px 48px;
+      padding: 64px 24px;
       text-align: center;
       background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      position: relative;
-      overflow: hidden;
     }
 
-    header h1 {
-      font-size: 44px;
-      margin: 0 0 8px;
-      letter-spacing: 1px;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      font-weight: 400;
-      margin: 0;
-      color: #dbeafe;
-    }
-
-    .lang-switch {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      display: inline-flex;
-      gap: 8px;
-      background: rgba(2, 6, 23, 0.35);
-      border: 1px solid rgba(226, 232, 240, 0.2);
-      padding: 8px;
-      border-radius: 999px;
-      backdrop-filter: blur(8px);
-    }
-
-    .lang-btn {
-      border: 1px solid rgba(226, 232, 240, 0.25);
-      background: transparent;
-      color: #e5e7eb;
-      padding: 6px 10px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.3px;
-      text-decoration: none;
-      display: inline-block;
-    }
+    h1 { font-size: 42px; margin: 0; }
+    h2 { font-weight: 400; margin-top: 12px; color: #dbeafe; }
 
     section {
-      max-width: 960px;
+      max-width: 1000px;
       margin: auto;
-      padding: 56px 24px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      padding: 48px 24px;
     }
 
     .card {
@@ -81,24 +36,37 @@
       border-radius: 14px;
       padding: 28px;
       border: 1px solid #1e293b;
+      margin-bottom: 32px;
     }
 
-    .card h3 {
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .menu a {
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(226,232,240,0.25);
+      background: rgba(2,6,23,0.4);
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .menu a:hover {
+      border-color: rgba(56,189,248,0.9);
+      background: rgba(2,6,23,0.7);
+    }
+
+    h3 {
       margin-top: 0;
       color: #38bdf8;
-    }
-
-    ul { padding-left: 20px; }
-
-    .tag {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      background: #1e293b;
-      margin-right: 8px;
-      margin-bottom: 8px;
-      border: 1px solid rgba(226, 232, 240, 0.12);
+      font-size: 22px;
     }
 
     footer {
@@ -107,243 +75,90 @@
       color: #94a3b8;
       border-top: 1px solid #1e293b;
     }
-
-    /* --------- Language display WITHOUT relying on JS ---------- */
-    /* Default: show EN, hide UA */
-    .lang-en { display: block; }
-    .lang-ua { display: none; }
-
-    /* If URL hash is #ua -> show UA */
-    #ua:target ~ .content .lang-en { display: none; }
-    #ua:target ~ .content .lang-ua { display: block; }
-
-    /* If URL hash is #en -> show EN */
-    #en:target ~ .content .lang-en { display: block; }
-    #en:target ~ .content .lang-ua { display: none; }
-
-    /* Active button style (approx) */
-    .lang-btn.active {
-      background: rgba(2, 6, 23, 0.65);
-      border-color: rgba(56, 189, 248, 0.7);
-    }
-
-    @media (max-width: 420px) {
-      header { padding-top: 88px; }
-      .lang-switch { left: 50%; right: auto; transform: translateX(-50%); }
-    }
   </style>
 </head>
 
 <body>
-  <!-- Invisible anchors used for :target language switching (works without JS) -->
-  <span id="en"></span>
-  <span id="ua"></span>
 
-  <div class="content">
-    <header>
-      <div class="lang-switch" aria-label="Language switch">
-        <a class="lang-btn" id="btn-en" href="#en">EN</a>
-        <a class="lang-btn" id="btn-ua" href="#ua">UA</a>
-      </div>
+<header>
+  <h1>GTTS</h1>
+  <h2>Global Truck Toll & Services</h2>
 
-      <h1>GTTS</h1>
+  <!-- SITE MENU -->
+  <div class="menu">
+    <a href="#vehicle">🚗 Автомобіль</a>
+    <a href="#navigation">🧭 Навігатор</a>
+    <a href="#tolls">🛣️ Оплата доріг</a>
+    <a href="#fuel">⛽ Заправка</a>
+    <a href="#hotels">🏨 Готелі</a>
+  </div>
+</header>
 
-      <p class="subtitle lang-en">Global Truck Toll & Services</p>
-      <p class="subtitle lang-ua">Глобальні дорожні та паливні сервіси для вантажних автопарків</p>
-    </header>
+<section>
 
-    <section>
-      <div class="grid">
-        <div class="card">
-          <div class="lang-en">
-            <h3>What is GTTS?</h3>
-            <p>
-              GTTS is a mobile-first platform for truck fueling and toll payments,
-              designed to replace traditional OBU devices and fuel cards.
-            </p>
-            <p>
-              The solution is built with a future <strong>EETS-compatible architecture</strong>
-              and focuses on fraud prevention, credit control, and scalability.
-            </p>
-          </div>
-
-          <div class="lang-ua">
-            <h3>Що таке GTTS?</h3>
-            <p>
-              GTTS — мобільна платформа для оплати пального та дорожніх сервісів для вантажних перевезень,
-              яка в перспективі може замінити класичні OBU-пристрої та паливні картки.
-            </p>
-            <p>
-              Архітектура орієнтована на майбутню <strong>сумісність з EETS</strong>,
-              а також на антифрод, кредитний контроль та масштабування.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="lang-en">
-            <h3>MVP Capabilities</h3>
-            <ul>
-              <li>Fuel stations on interactive map</li>
-              <li>Station-based fueling start</li>
-              <li>Geofence & anti-fraud rules</li>
-              <li>Credit & pre-authorization engine</li>
-              <li>Fuel session lifecycle</li>
-              <li>Hidden TEST MODE admin panel</li>
-            </ul>
-          </div>
-
-          <div class="lang-ua">
-            <h3>Можливості MVP</h3>
-            <ul>
-              <li>АЗС на інтерактивній мапі</li>
-              <li>Старт заправки від обраної станції</li>
-              <li>Geofence та антифрод правила</li>
-              <li>Кредитний ліміт і pre-authorization</li>
-              <li>Життєвий цикл fuel session (polling)</li>
-              <li>Прихована TEST MODE адмін-панель</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="lang-en">
-            <h3>Technology</h3>
-            <span class="tag">Flutter</span>
-            <span class="tag">Android</span>
-            <span class="tag">iOS</span>
-            <span class="tag">Google Maps</span>
-            <span class="tag">Riverpod</span>
-            <span class="tag">Rule-based Fraud</span>
-          </div>
-
-          <div class="lang-ua">
-            <h3>Технології</h3>
-            <span class="tag">Flutter</span>
-            <span class="tag">Android</span>
-            <span class="tag">iOS</span>
-            <span class="tag">Google Maps</span>
-            <span class="tag">Riverpod</span>
-            <span class="tag">Rule-based Fraud</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="lang-en">
-            <h3>Use Cases</h3>
-            <ul>
-              <li>Fleet fuel payments</li>
-              <li>OBU-free toll services</li>
-              <li>SME & enterprise fleets (1000+ vehicles)</li>
-              <li>Cross-border EU operations</li>
-            </ul>
-          </div>
-
-          <div class="lang-ua">
-            <h3>Сценарії використання</h3>
-            <ul>
-              <li>Оплата пального для автопарків</li>
-              <li>Дорожні сервіси без OBU (у перспективі)</li>
-              <li>Середні та великі автопарки (1000+)</li>
-              <li>Міжнародні перевезення в ЄС</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="lang-en">
-            <h3>Current Status</h3>
-            <p>GTTS is in <strong>MVP / sandbox</strong> stage and prepared for:</p>
-            <ul>
-              <li>Pilot testing with fleets</li>
-              <li>Fuel provider discussions</li>
-              <li>EETS partner evaluation</li>
-            </ul>
-          </div>
-
-          <div class="lang-ua">
-            <h3>Поточний статус</h3>
-            <p>GTTS знаходиться на етапі <strong>MVP / sandbox</strong> та готовий до:</p>
-            <ul>
-              <li>Пілотування з автопарками</li>
-              <li>Перемовин з паливними провайдерами</li>
-              <li>Оцінки з боку EETS партнерів</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="lang-en">
-            <h3>Roadmap</h3>
-            <ul>
-              <li>EETS Phase 1–2 compliance</li>
-              <li>Fuel provider integrations (UTA / DKV / E100-like)</li>
-              <li>Backend reconciliation & invoicing</li>
-              <li>Fleet management dashboard</li>
-              <li>Hardware / OBU hybrid support</li>
-            </ul>
-          </div>
-
-          <div class="lang-ua">
-            <h3>Роадмап</h3>
-            <ul>
-              <li>EETS Phase 1–2 відповідність</li>
-              <li>Інтеграції паливних провайдерів (UTA / DKV / E100-подібні)</li>
-              <li>Бекенд: звірка транзакцій та інвойсинг</li>
-              <li>Дашборд керування автопарком</li>
-              <li>Гібридний режим з hardware/OBU (за потреби)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="lang-en">
-        © 2026 GTTS — Global Truck Toll & Services<br/>
-        MVP / Sandbox environment
-      </div>
-      <div class="lang-ua">
-        © 2026 GTTS — Global Truck Toll & Services<br/>
-        MVP / Sandbox середовище
-      </div>
-    </footer>
+  <div id="vehicle" class="card">
+    <h3>🚗 Автомобіль</h3>
+    <p>
+      Управління транспортним засобом у системі GTTS:
+      привʼязка автомобіля, ідентифікація, доступ до сервісів.
+    </p>
+    <p>
+      У мобільному додатку водій або автопарк бачить активний автомобіль,
+      може змінити його або перевірити статус.
+    </p>
   </div>
 
-  <script>
-    // Optional enhancement: remember language choice and auto-detect on first visit.
-    (function () {
-      var KEY = "gtts_lang";
-      var btnEn = document.getElementById("btn-en");
-      var btnUa = document.getElementById("btn-ua");
+  <div id="navigation" class="card">
+    <h3>🧭 Навігатор</h3>
+    <p>
+      Інтерактивна мапа з АЗС, маршрутом і контекстом поїздки.
+    </p>
+    <p>
+      Використовується для старту заправки та (в перспективі)
+      для road toll / EETS сервісів.
+    </p>
+  </div>
 
-      function setActive() {
-        var hash = (location.hash || "#en").toLowerCase();
-        var lang = (hash === "#ua") ? "ua" : "en";
-        btnEn.classList.toggle("active", lang === "en");
-        btnUa.classList.toggle("active", lang === "ua");
-        try { localStorage.setItem(KEY, lang); } catch (_) {}
-      }
+  <div id="tolls" class="card">
+    <h3>🛣️ Оплата доріг</h3>
+    <p>
+      Майбутній модуль для оплати платних доріг у Європі
+      відповідно до EETS.
+    </p>
+    <p>
+      Планується як заміна фізичних OBU-пристроїв
+      з використанням мобільного додатку.
+    </p>
+  </div>
 
-      function getPreferred() {
-        try {
-          var saved = localStorage.getItem(KEY);
-          if (saved === "ua" || saved === "en") return saved;
-        } catch (_) {}
-        var nav = (navigator.language || "").toLowerCase();
-        if (nav.startsWith("uk") || nav.startsWith("ua")) return "ua";
-        return "en";
-      }
+  <div id="fuel" class="card">
+    <h3>⛽ Заправка</h3>
+    <p>
+      Запуск заправки з мобільного додатку:
+      pre-authorization, контроль кредиту, антифрод правила.
+    </p>
+    <p>
+      Реалізовано як повноцінний fuel session lifecycle (MVP).
+    </p>
+  </div>
 
-      // If no hash in URL, pick preferred and set it.
-      if (!location.hash) {
-        var pref = getPreferred();
-        location.hash = (pref === "ua") ? "#ua" : "#en";
-      }
+  <div id="hotels" class="card">
+    <h3>🏨 Готелі</h3>
+    <p>
+      Сервіс для водіїв: готелі, паркінги, місця відпочинку.
+    </p>
+    <p>
+      У перспективі — інтеграція з партнерами та оплата
+      корпоративним кредитом.
+    </p>
+  </div>
 
-      window.addEventListener("hashchange", setActive);
-      setActive();
-    })();
-  </script>
+</section>
+
+<footer>
+  © 2026 GTTS — Global Truck Toll & Services<br/>
+  MVP / Sandbox environment
+</footer>
+
 </body>
 </html>
