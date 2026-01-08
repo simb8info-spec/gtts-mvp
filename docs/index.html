@@ -17,39 +17,60 @@
     }
 
     header {
-      padding: 56px 24px 72px;
+      padding: 56px 24px 64px;
       text-align: center;
       background: linear-gradient(135deg, #0ea5e9, #2563eb);
       position: relative;
     }
 
-    h1 { font-size: 42px; margin: 0; }
-    h2 { font-weight: 400; margin-top: 12px; color: #dbeafe; }
+    h1 { font-size: 42px; margin: 0; letter-spacing: 1px; }
+    h2 { font-weight: 400; margin: 12px 0 0; color: #dbeafe; }
 
-    .lang-select {
+    .topbar {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(2,6,23,0.6);
+      top: 14px;
+      right: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(2,6,23,0.45);
+      border: 1px solid rgba(226,232,240,0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    .topbar label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #e5e7eb;
+      opacity: 0.95;
+    }
+
+    select {
+      background: rgba(2,6,23,0.75);
       color: #e5e7eb;
       border: 1px solid rgba(226,232,240,0.3);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-weight: 600;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-weight: 700;
+      font-size: 13px;
+      outline: none;
+      max-width: 220px;
     }
 
     section {
       max-width: 1000px;
-      margin: auto;
-      padding: 48px 24px;
+      margin: 0 auto;
+      padding: 40px 24px;
     }
 
     .card {
       background: #020617;
       border-radius: 14px;
-      padding: 28px;
+      padding: 26px;
       border: 1px solid #1e293b;
-      margin-bottom: 32px;
+      margin-bottom: 18px;
     }
 
     .menu {
@@ -57,118 +78,200 @@
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 22px;
     }
 
     .menu a {
-      padding: 12px 18px;
+      padding: 11px 16px;
       border-radius: 999px;
       border: 1px solid rgba(226,232,240,0.25);
-      background: rgba(2,6,23,0.4);
+      background: rgba(2,6,23,0.35);
       color: #e5e7eb;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
     }
 
     .menu a:hover {
       border-color: rgba(56,189,248,0.9);
+      background: rgba(2,6,23,0.55);
     }
 
-    h3 { margin-top: 0; color: #38bdf8; }
+    h3 { margin: 0 0 10px; color: #38bdf8; font-size: 20px; }
 
     footer {
       text-align: center;
-      padding: 32px 16px;
+      padding: 30px 16px;
       color: #94a3b8;
       border-top: 1px solid #1e293b;
     }
 
-    /* language handling */
-    [data-lang] { display: none; }
-    body[data-lang="en"] .lang-en { display: block; }
-    body[data-lang="uk"] .lang-uk { display: block; }
-    body[data-lang="ru"] .lang-ru { display: block; }
+    /* ---------- Language visibility (SAFE DEFAULT) ---------- */
+    /* EN is always visible by default -> no white screen */
+    .lang-en { display: block; }
+    .lang-uk, .lang-ru { display: none; }
+
+    body.lang-uk .lang-en { display: none; }
+    body.lang-uk .lang-uk { display: block; }
+
+    body.lang-ru .lang-en { display: none; }
+    body.lang-ru .lang-ru { display: block; }
+
+    .note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: rgba(229,231,235,0.9);
+      opacity: 0.95;
+    }
+
+    @media (max-width: 520px) {
+      header { padding-top: 96px; }
+      .topbar { left: 50%; right: auto; transform: translateX(-50%); }
+      select { max-width: 260px; }
+    }
   </style>
 </head>
 
-<body data-lang="en">
-
+<body>
 <header>
-  <select class="lang-select" id="langSelect">
-    <option value="en">English</option>
-    <option value="uk">Українська</option>
-    <option value="ru">Русский</option>
-    <option disabled>──────────</option>
-    <option value="en">Deutsch (EU)</option>
-    <option value="en">Français (EU)</option>
-    <option value="en">Italiano (EU)</option>
-    <option value="en">Español (EU)</option>
-    <option value="en">Polski (EU)</option>
-    <option value="en">Čeština (EU)</option>
-    <option value="en">Slovenčina (EU)</option>
-    <option value="en">Magyar (EU)</option>
-    <option value="en">Română (EU)</option>
-    <option value="en">Nederlands (EU)</option>
-    <option value="en">Português (EU)</option>
-    <option value="en">Svenska (EU)</option>
-    <option value="en">Dansk (EU)</option>
-    <option value="en">Suomi (EU)</option>
-    <option value="en">Ελληνικά (EU)</option>
-    <option value="en">Български (EU)</option>
-    <option value="en">Hrvatski (EU)</option>
-    <option value="en">Latviešu (EU)</option>
-    <option value="en">Lietuvių (EU)</option>
-    <option value="en">Eesti (EU)</option>
-  </select>
+  <div class="topbar">
+    <label for="lang">Language</label>
+    <select id="lang">
+      <!-- Core -->
+      <option value="en">English</option>
+      <option value="uk">Українська</option>
+      <option value="ru">Русский</option>
+
+      <option disabled>──────── EU Languages ────────</option>
+
+      <!-- EU official languages list -->
+      <option value="bg">Български (BG)</option>
+      <option value="hr">Hrvatski (HR)</option>
+      <option value="cs">Čeština (CS)</option>
+      <option value="da">Dansk (DA)</option>
+      <option value="nl">Nederlands (NL)</option>
+      <option value="et">Eesti (ET)</option>
+      <option value="fi">Suomi (FI)</option>
+      <option value="fr">Français (FR)</option>
+      <option value="de">Deutsch (DE)</option>
+      <option value="el">Ελληνικά (EL)</option>
+      <option value="hu">Magyar (HU)</option>
+      <option value="ga">Gaeilge (GA)</option>
+      <option value="it">Italiano (IT)</option>
+      <option value="lv">Latviešu (LV)</option>
+      <option value="lt">Lietuvių (LT)</option>
+      <option value="mt">Malti (MT)</option>
+      <option value="pl">Polski (PL)</option>
+      <option value="pt">Português (PT)</option>
+      <option value="ro">Română (RO)</option>
+      <option value="sk">Slovenčina (SK)</option>
+      <option value="sl">Slovenščina (SL)</option>
+      <option value="es">Español (ES)</option>
+      <option value="sv">Svenska (SV)</option>
+    </select>
+  </div>
 
   <h1>GTTS</h1>
 
   <div class="lang-en"><h2>Global Truck Toll & Services</h2></div>
   <div class="lang-uk"><h2>Глобальні дорожні та паливні сервіси для автопарків</h2></div>
-  <div class="lang-ru"><h2>Глобальные дорожные и топливные сервисы</h2></div>
+  <div class="lang-ru"><h2>Глобальные дорожные и топливные сервисы для автопарков</h2></div>
 
   <div class="menu">
-    <a href="#vehicle">🚗 Vehicle</a>
-    <a href="#navigation">🧭 Navigation</a>
-    <a href="#tolls">🛣️ Tolls</a>
-    <a href="#fuel">⛽ Fuel</a>
-    <a href="#hotels">🏨 Hotels</a>
+    <a href="#vehicle">🚗 Автомобіль</a>
+    <a href="#navigation">🧭 Навігатор</a>
+    <a href="#tolls">🛣️ Оплата доріг</a>
+    <a href="#fuel">⛽ Заправка</a>
+    <a href="#hotels">🏨 Готелі</a>
   </div>
+
+  <div class="note lang-en">EU languages are listed; if a translation is not available yet, the page falls back to English.</div>
+  <div class="note lang-uk">Мови ЄС є у списку; якщо перекладу ще немає — сторінка автоматично показує англійську.</div>
+  <div class="note lang-ru">Языки ЕС есть в списке; если перевода пока нет — страница показывает английский.</div>
 </header>
 
 <section>
-
   <div id="vehicle" class="card">
-    <div class="lang-en"><h3>Vehicle</h3><p>Vehicle binding and fleet identity.</p></div>
-    <div class="lang-uk"><h3>Автомобіль</h3><p>Привʼязка автомобіля та ідентифікація автопарку.</p></div>
-    <div class="lang-ru"><h3>Автомобиль</h3><p>Привязка автомобиля и идентификация автопарка.</p></div>
+    <div class="lang-en">
+      <h3>Vehicle</h3>
+      <p>Vehicle binding, fleet identity, driver access and permissions.</p>
+    </div>
+    <div class="lang-uk">
+      <h3>Автомобіль</h3>
+      <p>Привʼязка автомобіля, ідентифікація автопарку, доступ водія та права.</p>
+    </div>
+    <div class="lang-ru">
+      <h3>Автомобиль</h3>
+      <p>Привязка автомобиля, идентификация автопарка, доступ водителя и права.</p>
+    </div>
   </div>
 
   <div id="navigation" class="card">
-    <div class="lang-en"><h3>Navigation</h3><p>Map, stations and routing context.</p></div>
-    <div class="lang-uk"><h3>Навігатор</h3><p>Мапа, АЗС та маршрут.</p></div>
-    <div class="lang-ru"><h3>Навигатор</h3><p>Карта, АЗС и маршрут.</p></div>
+    <div class="lang-en">
+      <h3>Navigation</h3>
+      <p>Interactive map with stations and route context for fleet operations.</p>
+    </div>
+    <div class="lang-uk">
+      <h3>Навігатор</h3>
+      <p>Інтерактивна мапа з АЗС та маршрутним контекстом для автопарків.</p>
+    </div>
+    <div class="lang-ru">
+      <h3>Навигатор</h3>
+      <p>Интерактивная карта с АЗС и маршрутным контекстом для автопарков.</p>
+    </div>
   </div>
 
   <div id="tolls" class="card">
-    <div class="lang-en"><h3>Tolls</h3><p>EETS-compatible road toll services.</p></div>
-    <div class="lang-uk"><h3>Оплата доріг</h3><p>EETS-сумісні дорожні сервіси.</p></div>
-    <div class="lang-ru"><h3>Платные дороги</h3><p>EETS-совместимые дорожные сервисы.</p></div>
+    <div class="lang-en">
+      <h3>Tolls</h3>
+      <p>EETS-oriented toll services with a path to OBU replacement.</p>
+    </div>
+    <div class="lang-uk">
+      <h3>Оплата доріг</h3>
+      <p>EETS-орієнтований модуль оплати доріг з перспективою заміни OBU.</p>
+    </div>
+    <div class="lang-ru">
+      <h3>Оплата дорог</h3>
+      <p>EETS-ориентированный модуль оплаты дорог с перспективой замены OBU.</p>
+    </div>
   </div>
 
   <div id="fuel" class="card">
-    <div class="lang-en"><h3>Fuel</h3><p>Fuel sessions, credit and fraud control.</p></div>
-    <div class="lang-uk"><h3>Заправка</h3><p>Заправка, кредит та антифрод.</p></div>
-    <div class="lang-ru"><h3>Заправка</h3><p>Заправка, кредит и антифрод.</p></div>
+    <div class="lang-en">
+      <h3>Fuel</h3>
+      <p>Fuel sessions with credit pre-authorization and anti-fraud controls.</p>
+    </div>
+    <div class="lang-uk">
+      <h3>Заправка</h3>
+      <p>Сесії заправки з pre-authorization, кредитним контролем та антифродом.</p>
+    </div>
+    <div class="lang-ru">
+      <h3>Заправка</h3>
+      <p>Сессии заправки с pre-authorization, кредитным контролем и антифродом.</p>
+    </div>
   </div>
 
   <div id="hotels" class="card">
-    <div class="lang-en"><h3>Hotels</h3><p>Driver rest and parking services.</p></div>
-    <div class="lang-uk"><h3>Готелі</h3><p>Відпочинок та паркінг для водіїв.</p></div>
-    <div class="lang-ru"><h3>Отели</h3><p>Отдых и парковки для водителей.</p></div>
+    <div class="lang-en">
+      <h3>Hotels</h3>
+      <p>Driver rest services: hotels, parking, and partner integrations.</p>
+    </div>
+    <div class="lang-uk">
+      <h3>Готелі</h3>
+      <p>Сервіси відпочинку водія: готелі, паркінг та партнерські інтеграції.</p>
+    </div>
+    <div class="lang-ru">
+      <h3>Отели</h3>
+      <p>Сервисы отдыха водителя: отели, парковки и партнерские интеграции.</p>
+    </div>
   </div>
 
+  <noscript>
+    <div class="card">
+      <h3>Note</h3>
+      <p>JavaScript is disabled. The page will remain in English (default).</p>
+    </div>
+  </noscript>
 </section>
 
 <footer>
@@ -177,20 +280,41 @@
 </footer>
 
 <script>
-  const select = document.getElementById('langSelect');
-  const body = document.body;
+  (function () {
+    var KEY = "gtts_lang";
+    var select = document.getElementById("lang");
+    if (!select) return;
 
-  function setLang(lang) {
-    body.setAttribute('data-lang', lang);
-    try { localStorage.setItem('gtts_lang', lang); } catch(e){}
-  }
+    // Only these languages have real translations now.
+    var supported = { en: true, uk: true, ru: true };
 
-  const saved = localStorage.getItem('gtts_lang');
-  if (saved) setLang(saved);
+    function apply(lang) {
+      // fallback to EN if not supported yet
+      if (!supported[lang]) lang = "en";
 
-  select.addEventListener('change', e => {
-    setLang(e.target.value);
-  });
+      document.body.classList.remove("lang-uk", "lang-ru");
+      if (lang === "uk") document.body.classList.add("lang-uk");
+      else if (lang === "ru") document.body.classList.add("lang-ru");
+      // EN: no class needed (default visible)
+
+      // keep dropdown selection (even if it falls back to EN)
+      select.value = lang;
+
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    }
+
+    // Load saved or detect browser language
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    var nav = (navigator.language || "").toLowerCase();
+    var detected = (nav.startsWith("uk") || nav.startsWith("ua")) ? "uk" : "en";
+
+    apply(saved || detected);
+
+    select.addEventListener("change", function (e) {
+      apply(e.target.value);
+    });
+  })();
 </script>
 
 </body>
