@@ -15,19 +15,29 @@ class AppShell extends ConsumerWidget {
     final currentIndex = ref.watch(tabIndexProvider);
 
     final pages = const [
-      FuelPage(), // index 0
-      MapPage(),  // index 1
-      Center(child: Text('Profile (stub)')), // index 2
+      FuelPage(), // 0
+      MapPage(),  // 1
+      Center(child: Text('Profile (stub)')), // 2
     ];
 
     return Scaffold(
-      drawer: const AppDrawer(), // ← БОКОВЕ МЕНЮ
+      // ✅ AppBar тут
+      appBar: AppBar(
+        title: const Text('GTTS'),
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
+      ),
+
+      drawer: const AppDrawer(), // ✅ бокове меню
       body: pages[currentIndex],
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (index) =>
-            ref.read(tabIndexProvider.notifier).state = index,
+        onTap: (i) => ref.read(tabIndexProvider.notifier).state = i,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.local_gas_station),
