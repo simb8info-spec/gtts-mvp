@@ -106,16 +106,17 @@
       border-top: 1px solid #1e293b;
     }
 
-    /* ---------- Language visibility (SAFE DEFAULT) ---------- */
-    /* EN is always visible by default -> no white screen */
+    /* ---------- Language visibility (NO CONFLICTS) ---------- */
+    /* Default: show English */
     .lang-en { display: block; }
     .lang-uk, .lang-ru { display: none; }
 
-    body.lang-uk .lang-en { display: none; }
-    body.lang-uk .lang-uk { display: block; }
+    /* Switch by attribute (safe) */
+    body[data-lang="uk"] .lang-en { display: none; }
+    body[data-lang="uk"] .lang-uk { display: block; }
 
-    body.lang-ru .lang-en { display: none; }
-    body.lang-ru .lang-ru { display: block; }
+    body[data-lang="ru"] .lang-en { display: none; }
+    body[data-lang="ru"] .lang-ru { display: block; }
 
     .note {
       margin-top: 12px;
@@ -132,7 +133,7 @@
   </style>
 </head>
 
-<body>
+<body data-lang="en">
 <header>
   <div class="topbar">
     <label for="lang">Language</label>
@@ -178,11 +179,11 @@
   <div class="lang-ru"><h2>Глобальные дорожные и топливные сервисы для автопарков</h2></div>
 
   <div class="menu">
-    <a href="#vehicle">🚗 Автомобіль</a>
-    <a href="#navigation">🧭 Навігатор</a>
-    <a href="#tolls">🛣️ Оплата доріг</a>
-    <a href="#fuel">⛽ Заправка</a>
-    <a href="#hotels">🏨 Готелі</a>
+    <a href="#vehicle">🚗 Vehicle</a>
+    <a href="#navigation">🧭 Navigation</a>
+    <a href="#tolls">🛣️ Tolls</a>
+    <a href="#fuel">⛽ Fuel</a>
+    <a href="#hotels">🏨 Hotels</a>
   </div>
 
   <div class="note lang-en">EU languages are listed; if a translation is not available yet, the page falls back to English.</div>
@@ -289,15 +290,9 @@
     var supported = { en: true, uk: true, ru: true };
 
     function apply(lang) {
-      // fallback to EN if not supported yet
-      if (!supported[lang]) lang = "en";
+      if (!supported[lang]) lang = "en"; // fallback to EN
 
-      document.body.classList.remove("lang-uk", "lang-ru");
-      if (lang === "uk") document.body.classList.add("lang-uk");
-      else if (lang === "ru") document.body.classList.add("lang-ru");
-      // EN: no class needed (default visible)
-
-      // keep dropdown selection (even if it falls back to EN)
+      document.body.setAttribute("data-lang", lang);
       select.value = lang;
 
       try { localStorage.setItem(KEY, lang); } catch (e) {}
@@ -306,6 +301,7 @@
     // Load saved or detect browser language
     var saved = null;
     try { saved = localStorage.getItem(KEY); } catch (e) {}
+
     var nav = (navigator.language || "").toLowerCase();
     var detected = (nav.startsWith("uk") || nav.startsWith("ua")) ? "uk" : "en";
 
