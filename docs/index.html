@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>GTTS — Global Truck Toll & Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="GTTS — платформа для заправок, оплати доріг та сервісів для вантажних автопарків." />
+  <meta name="description" content="GTTS — platform for truck fueling, toll payments and fleet services in Europe." />
 
   <style>
     * { box-sizing: border-box; }
@@ -17,13 +17,26 @@
     }
 
     header {
-      padding: 64px 24px;
+      padding: 56px 24px 72px;
       text-align: center;
       background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      position: relative;
     }
 
     h1 { font-size: 42px; margin: 0; }
     h2 { font-weight: 400; margin-top: 12px; color: #dbeafe; }
+
+    .lang-select {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(2,6,23,0.6);
+      color: #e5e7eb;
+      border: 1px solid rgba(226,232,240,0.3);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-weight: 600;
+    }
 
     section {
       max-width: 1000px;
@@ -60,14 +73,9 @@
 
     .menu a:hover {
       border-color: rgba(56,189,248,0.9);
-      background: rgba(2,6,23,0.7);
     }
 
-    h3 {
-      margin-top: 0;
-      color: #38bdf8;
-      font-size: 22px;
-    }
+    h3 { margin-top: 0; color: #38bdf8; }
 
     footer {
       text-align: center;
@@ -75,82 +83,90 @@
       color: #94a3b8;
       border-top: 1px solid #1e293b;
     }
+
+    /* language handling */
+    [data-lang] { display: none; }
+    body[data-lang="en"] .lang-en { display: block; }
+    body[data-lang="uk"] .lang-uk { display: block; }
+    body[data-lang="ru"] .lang-ru { display: block; }
   </style>
 </head>
 
-<body>
+<body data-lang="en">
 
 <header>
-  <h1>GTTS</h1>
-  <h2>Global Truck Toll & Services</h2>
+  <select class="lang-select" id="langSelect">
+    <option value="en">English</option>
+    <option value="uk">Українська</option>
+    <option value="ru">Русский</option>
+    <option disabled>──────────</option>
+    <option value="en">Deutsch (EU)</option>
+    <option value="en">Français (EU)</option>
+    <option value="en">Italiano (EU)</option>
+    <option value="en">Español (EU)</option>
+    <option value="en">Polski (EU)</option>
+    <option value="en">Čeština (EU)</option>
+    <option value="en">Slovenčina (EU)</option>
+    <option value="en">Magyar (EU)</option>
+    <option value="en">Română (EU)</option>
+    <option value="en">Nederlands (EU)</option>
+    <option value="en">Português (EU)</option>
+    <option value="en">Svenska (EU)</option>
+    <option value="en">Dansk (EU)</option>
+    <option value="en">Suomi (EU)</option>
+    <option value="en">Ελληνικά (EU)</option>
+    <option value="en">Български (EU)</option>
+    <option value="en">Hrvatski (EU)</option>
+    <option value="en">Latviešu (EU)</option>
+    <option value="en">Lietuvių (EU)</option>
+    <option value="en">Eesti (EU)</option>
+  </select>
 
-  <!-- SITE MENU -->
+  <h1>GTTS</h1>
+
+  <div class="lang-en"><h2>Global Truck Toll & Services</h2></div>
+  <div class="lang-uk"><h2>Глобальні дорожні та паливні сервіси для автопарків</h2></div>
+  <div class="lang-ru"><h2>Глобальные дорожные и топливные сервисы</h2></div>
+
   <div class="menu">
-    <a href="#vehicle">🚗 Автомобіль</a>
-    <a href="#navigation">🧭 Навігатор</a>
-    <a href="#tolls">🛣️ Оплата доріг</a>
-    <a href="#fuel">⛽ Заправка</a>
-    <a href="#hotels">🏨 Готелі</a>
+    <a href="#vehicle">🚗 Vehicle</a>
+    <a href="#navigation">🧭 Navigation</a>
+    <a href="#tolls">🛣️ Tolls</a>
+    <a href="#fuel">⛽ Fuel</a>
+    <a href="#hotels">🏨 Hotels</a>
   </div>
 </header>
 
 <section>
 
   <div id="vehicle" class="card">
-    <h3>🚗 Автомобіль</h3>
-    <p>
-      Управління транспортним засобом у системі GTTS:
-      привʼязка автомобіля, ідентифікація, доступ до сервісів.
-    </p>
-    <p>
-      У мобільному додатку водій або автопарк бачить активний автомобіль,
-      може змінити його або перевірити статус.
-    </p>
+    <div class="lang-en"><h3>Vehicle</h3><p>Vehicle binding and fleet identity.</p></div>
+    <div class="lang-uk"><h3>Автомобіль</h3><p>Привʼязка автомобіля та ідентифікація автопарку.</p></div>
+    <div class="lang-ru"><h3>Автомобиль</h3><p>Привязка автомобиля и идентификация автопарка.</p></div>
   </div>
 
   <div id="navigation" class="card">
-    <h3>🧭 Навігатор</h3>
-    <p>
-      Інтерактивна мапа з АЗС, маршрутом і контекстом поїздки.
-    </p>
-    <p>
-      Використовується для старту заправки та (в перспективі)
-      для road toll / EETS сервісів.
-    </p>
+    <div class="lang-en"><h3>Navigation</h3><p>Map, stations and routing context.</p></div>
+    <div class="lang-uk"><h3>Навігатор</h3><p>Мапа, АЗС та маршрут.</p></div>
+    <div class="lang-ru"><h3>Навигатор</h3><p>Карта, АЗС и маршрут.</p></div>
   </div>
 
   <div id="tolls" class="card">
-    <h3>🛣️ Оплата доріг</h3>
-    <p>
-      Майбутній модуль для оплати платних доріг у Європі
-      відповідно до EETS.
-    </p>
-    <p>
-      Планується як заміна фізичних OBU-пристроїв
-      з використанням мобільного додатку.
-    </p>
+    <div class="lang-en"><h3>Tolls</h3><p>EETS-compatible road toll services.</p></div>
+    <div class="lang-uk"><h3>Оплата доріг</h3><p>EETS-сумісні дорожні сервіси.</p></div>
+    <div class="lang-ru"><h3>Платные дороги</h3><p>EETS-совместимые дорожные сервисы.</p></div>
   </div>
 
   <div id="fuel" class="card">
-    <h3>⛽ Заправка</h3>
-    <p>
-      Запуск заправки з мобільного додатку:
-      pre-authorization, контроль кредиту, антифрод правила.
-    </p>
-    <p>
-      Реалізовано як повноцінний fuel session lifecycle (MVP).
-    </p>
+    <div class="lang-en"><h3>Fuel</h3><p>Fuel sessions, credit and fraud control.</p></div>
+    <div class="lang-uk"><h3>Заправка</h3><p>Заправка, кредит та антифрод.</p></div>
+    <div class="lang-ru"><h3>Заправка</h3><p>Заправка, кредит и антифрод.</p></div>
   </div>
 
   <div id="hotels" class="card">
-    <h3>🏨 Готелі</h3>
-    <p>
-      Сервіс для водіїв: готелі, паркінги, місця відпочинку.
-    </p>
-    <p>
-      У перспективі — інтеграція з партнерами та оплата
-      корпоративним кредитом.
-    </p>
+    <div class="lang-en"><h3>Hotels</h3><p>Driver rest and parking services.</p></div>
+    <div class="lang-uk"><h3>Готелі</h3><p>Відпочинок та паркінг для водіїв.</p></div>
+    <div class="lang-ru"><h3>Отели</h3><p>Отдых и парковки для водителей.</p></div>
   </div>
 
 </section>
@@ -159,6 +175,23 @@
   © 2026 GTTS — Global Truck Toll & Services<br/>
   MVP / Sandbox environment
 </footer>
+
+<script>
+  const select = document.getElementById('langSelect');
+  const body = document.body;
+
+  function setLang(lang) {
+    body.setAttribute('data-lang', lang);
+    try { localStorage.setItem('gtts_lang', lang); } catch(e){}
+  }
+
+  const saved = localStorage.getItem('gtts_lang');
+  if (saved) setLang(saved);
+
+  select.addEventListener('change', e => {
+    setLang(e.target.value);
+  });
+</script>
 
 </body>
 </html>
