@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../domain/vehicle.dart';
-import '../providers/vehicle_provider.dart';
-import 'vehicle_binding_page.dart';
+import '../lib/features/shell/presentation/vehicle_page.dart';
 
 class VehiclePage extends ConsumerWidget {
   const VehiclePage({super.key});
